@@ -21,8 +21,6 @@ int main(int argc, char **argv)
 
     FILE *in = fopen(tmpname,"r");
 
-    free(tmpname);
-
     if (!in) {
         fprintf(stderr,"Error %d: Could not open file %s: %s\n",errno,argv[1],strerror(errno));
         return 1;
@@ -68,6 +66,7 @@ int main(int argc, char **argv)
 
     free(tokens);
     fclose(in);
+    remove(tmpname);
 }
 
 char *parse_args(int argc, char **argv)

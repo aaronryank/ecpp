@@ -5,7 +5,7 @@
 #include "string.h"
 #include "extern.h"
 
-#define whitespace(c) (c == ' ' || c == '\n' || c == '\t')
+#define whitespace(c) (c == ' ' || c == '\n' || c == '\t' || c == '\r')
 
 token_t *tokenize(FILE *in)
 {
