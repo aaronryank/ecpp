@@ -1,4 +1,4 @@
-OBJ := src/token.o src/tokenizer.o src/string.o src/main.o src/pp-setup.o src/preprocessor.o src/rules.o src/pretty.o
+OBJ := src/token.o src/tokenizer.o src/string.o src/main.o src/pp-setup.o src/preprocessor.o src/rules.o src/pretty.o src/uncomment.o
 OBJ_ := src/token.o src/tokenizer.o src/string.o src/preprocessor.o src/pp-setup.o src/rules.o
 CC := gcc
 CFLAGS := -g -Wall -O3
@@ -9,8 +9,8 @@ UNCOMMENT := out/uncomment
 all: $(OBJ)
 	$(CC) $(OBJ) $(CFLAGS) -o $(ECPP)
 
-uncomment: src/uncomment.o
-	$(CC) src/uncomment.o $(CFLAGS) -o $(UNCOMMENT)
+uncomment:
+	$(CC) -DUNCOMMENT_MAIN src/uncomment.c $(CFLAGS) -o $(UNCOMMENT)
 
 clean:
 	rm $(OBJ)

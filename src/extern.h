@@ -65,4 +65,8 @@ extern void add_reserved_keyword(const char *);
 
 extern void prettyprint_line(int, token_t *, struct prettyprint *);
 
+/* uncomment.c */
+
+extern void uncomment(const char *, const char *);
+
 #endif // ecpp's extern.h

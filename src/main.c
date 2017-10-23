@@ -12,7 +12,16 @@ int main(int argc, char **argv)
 {
     char *fname = parse_args(argc,argv);   // get filename and flags
 
-    FILE *in = fname ? fopen(fname,"r") : stdin;
+    char *tmpname = malloc(100*sizeof(char));
+    memset(tmpname,0,100);
+    strcpy(tmpname,fname ? fname : "stdin");
+    strcat(tmpname,".tmp");
+
+    uncomment(fname ? fname : "stdin",tmpname);
+
+    FILE *in = fopen(tmpname,"r");
+
+    free(tmpname);
 
     if (!in) {
         fprintf(stderr,"Error %d: Could not open file %s: %s\n",errno,argv[1],strerror(errno));

@@ -32,7 +32,7 @@ int opening_brace(const token_t *src, struct prettyprint **ps)
 int closing_brace(const token_t *src, struct prettyprint **ps)
 {
     if (src->prev->type == TYPE_SEMICOLON) {    // basically, anything outside of e.g. char x[10] = {0};
-        (*ps)->spaces--;
+        (*ps)->spaces = (*ps)->spaces - 1;
 
         int i = 0;
 
@@ -85,7 +85,7 @@ int semicolon(token_t *_src, struct prettyprint **ps)
 int operator(token_t *src, struct prettyprint **ps)
 {
     if (!strcmp(src->val,".") || !strcmp(src->val,"->") || !strcmp(src->val,"++") || !strcmp(src->val,"--")) {
-        printf(src->val);
+        printf("%s",src->val);
         return 0;
     }
 

@@ -2,17 +2,23 @@
 #include <string.h>
 #include <errno.h>
 #include <stdlib.h>
+#include "extern.h"
 
 // this is probably crappy but I was tired when I wrote this and it works perfectly
 
+#ifdef UNCOMMENT_MAIN
+
 int main(int argc, char **argv)
 {
-    FILE *in = (argc > 1) ? fopen(argv[1],"r") : stdin;
+    uncomment(argv[1] ? argv[1] : "stdin","stdout");
+}
 
-    if (!in) {
-        fprintf(stderr,"Error %d: Could not open file %s: %s\n",errno,argv[1],strerror(errno));
-        return 1;
-    }
+#endif
+
+void uncomment(const char *infile, const char *outfile)
+{
+    FILE *in  = strcmp(infile,"stdin") ? fopen(infile,"r") : stdin;
+    FILE *out = strcmp(outfile,"stdout") ? fopen(outfile,"w+") : stdout;
 
     int loop = 1, i = 0;
     int c = 0, prev = 0;
@@ -55,7 +61,8 @@ int main(int argc, char **argv)
         }
 
         if (i+1 >= 1024) {
-            printf("%s",outbuf);
+            fwrite(outbuf,1,strlen(outbuf),out);
+            //fprintf(out,"%s",outbuf);
             i = 0;
             memset(outbuf,0,1024);
         }
@@ -63,5 +70,8 @@ int main(int argc, char **argv)
         prev = c;
     }
 
-    printf("%s",outbuf);
+    if (strlen(outbuf))
+        fwrite(outbuf,1,strlen(outbuf),out);
+    fclose(out);
+    fclose(in);
 }
