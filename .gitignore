@@ -1,3 +1,7 @@
+# ECPP
+out\*
+src\*.o
+
 # Prerequisites
 *.d
 
