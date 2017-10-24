@@ -7,7 +7,7 @@
 
 int opening_brace(const token_t *src, struct prettyprint **ps)
 {
-    if (!strcmp(src->prev->val,"=")) {    // e.g. char x[10] = {0};
+    if (src->prev && !strcmp(src->prev->val,"=")) {    // e.g. char x[10] = {0};
         putchar('{');
         return 0;
     }
@@ -69,6 +69,12 @@ int semicolon(token_t *_src, struct prettyprint **ps)
 
     putchar(';');
 
+    /* last token in file */
+    if (!_src || !_src->next || !_src->next->type) {
+        putchar('\n');
+        return 1;
+    }
+
     if (_src->next->type != TYPE_CBRACE) {
         putchar('\n');
 
@@ -86,6 +92,9 @@ int operator(token_t *src, struct prettyprint **ps)
 {
     if (!strcmp(src->val,".") || !strcmp(src->val,"->") || !strcmp(src->val,"++") || !strcmp(src->val,"--")) {
         printf("%s",src->val);
+        return 0;
+    } else if (!strcmp(src->val,"*") && src->prev && src->prev->type == TYPE_RESERVED) {
+        printf(" %s",src->val);
         return 0;
     }
 
@@ -133,6 +142,12 @@ void prettyprint_line(int line, token_t *_src, struct prettyprint *ps)
     {
         int printed_newline = 0;
 
+        if (flags['u']) {
+            printf("%s ",src->val);
+            src = src->next;
+            continue;
+        }
+
         if (src->type == TYPE_OBRACE)
             printed_newline = opening_brace(src,&ps);
         else if (src->type == TYPE_CBRACE)
@@ -169,14 +184,18 @@ void prettyprint_line(int line, token_t *_src, struct prettyprint *ps)
 
 int flags[127];   // avoid linking errors
 
-int main(void)
+int main(int argc, char **argv)
 {
     token_t *tokens, *tmp;
     struct prettyprint ps = {0};
     int line, maxline;
+    FILE *in = argv[1] ? fopen(argv[1],"r") : stdin;
 
     setup_rules();
-    tokens = tokenize(stdin);
+    tokens = tokenize(in);
+    fclose(in);
+
+    uncomment(NULL,NULL,&tokens);
 
     for (tmp = tokens; tmp->next; tmp = tmp->next)
         ;

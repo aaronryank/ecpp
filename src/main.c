@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include "string.h"
 #include "token.h"
 #include "extern.h"
 #include "pretty.h"
@@ -12,14 +13,7 @@ int main(int argc, char **argv)
 {
     char *fname = parse_args(argc,argv);   // get filename and flags
 
-    char *tmpname = malloc(100*sizeof(char));
-    memset(tmpname,0,100);
-    strcpy(tmpname,fname ? fname : "stdin");
-    strcat(tmpname,".tmp");
-
-    uncomment(fname ? fname : "stdin",tmpname);
-
-    FILE *in = fopen(tmpname,"r");
+    FILE *in = fname ? fopen(fname,"r") : stdin;
 
     if (!in) {
         fprintf(stderr,"Error %d: Could not open file %s: %s\n",errno,argv[1],strerror(errno));
@@ -37,6 +31,10 @@ int main(int argc, char **argv)
     IF_DEBUG(puts("--- done tokenizing ---"));
     IF_DEBUG(print_list(tokens));
 
+    IF_DEBUG(puts("--- uncommenting ---"));
+
+    uncomment(NULL,NULL,&tokens);
+
     int line = 1;
     struct prettyprint ps = {0};
     char *s = malloc(1024 * sizeof(char));
@@ -51,7 +49,9 @@ int main(int argc, char **argv)
         else if (s[0] == '%' && !(strstr(s,"rule") == s+1)) {    // prevent duplication of rules
             preprocess(s);
         }
-        else {
+        else if (str_only_contains(s," \t\r\n")) {
+            putchar('\n');
+        } else {
             tokens = preprocess_line(line,tokens);               // performs define's and replace's on the current line
             prettyprint_line(line++,tokens,&ps);
         }
@@ -66,7 +66,6 @@ int main(int argc, char **argv)
 
     free(tokens);
     fclose(in);
-    remove(tmpname);
 }
 
 char *parse_args(int argc, char **argv)

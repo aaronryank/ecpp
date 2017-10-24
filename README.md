@@ -16,8 +16,17 @@ To build, run `make`, then `make uncomment`. If you also want to individually us
 
 # Running
 
-To run, call `sh run\ecpp.sh` for Unix and `run\ecpp.bat` for Windows.
+To run ecpp with the uncommenter and prettyprinter, run `out/ecpp sourcefile`.
 
-To run without the uncommenter, run `out\ecpp sourcefile <arguments...>`. To run the uncommenter only, run `out\uncomment sourcefile`.
+To run the uncommenter only, run `out/uncomment sourcefile`.
 
-To run the prettyprinter only, run `out\pretty < sourcefile`.
+To run the prettyprinter only, run `out/pretty < sourcefile`.
+
+# Installing
+
+To install on your system, run `./install /path/to/installation/directory`. It will:
+
+ - Build ecpp, the prettyprinter, and the uncommenter (cleanly)
+ - Copy all the output executables to the specified installation directory
+ - Add the installation directory to the `PATH` environment variable
+ - Create a rule to add the installation directory to `$PATH` in the current user's `.bashrc` (or `.bash_profile`)

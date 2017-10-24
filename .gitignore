@@ -1,4 +1,5 @@
 # ECPP
+out
 out\*
 src\*.o
 
@@ -54,3 +55,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Tests
+test.bash
+test.sh

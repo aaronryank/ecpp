@@ -1,4 +1,4 @@
-/* an example of using C++-style pointers (I think) */
+/* an example of using C++ style pointers (I think) */
 
 #include <stdio.h>
 

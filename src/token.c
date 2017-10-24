@@ -99,7 +99,7 @@ void add_at_current(token_t **current, char *val, int type, int line)
 token_struct *pop(token_t **head)
 {
     token_struct *retval = malloc(sizeof(token_struct));
-    token_t *next_node = NULL;
+    token_t *next_node = NULL, *prev_node = NULL;
 
     if (*head == NULL) {
         return NULL;
@@ -109,11 +109,14 @@ token_struct *pop(token_t **head)
     retval->line = (*head)->line;
     retval->val  = strdup((*head)->val);
 
-    next_node = (*head)->prev;
-    (*head) = (*head)->next;
-    (*head)->prev = next_node;
-    (*head)->prev->next = (*head);
-    //*head = next_node;
+    prev_node = (*head)->prev;
+    next_node = (*head)->next;
+    free(*head);
+    (*head) = next_node;
+    (*head)->prev = prev_node;
+
+    if (prev_node)
+        (*head)->prev->next = (*head);
 
     return retval;
 }

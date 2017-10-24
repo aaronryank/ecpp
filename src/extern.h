@@ -67,6 +67,6 @@ extern void prettyprint_line(int, token_t *, struct prettyprint *);
 
 /* uncomment.c */
 
-extern void uncomment(const char *, const char *);
+extern void uncomment(const char *, const char *, token_t **);
 
 #endif // ecpp's extern.h

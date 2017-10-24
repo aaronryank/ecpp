@@ -1,0 +1,35 @@
+#!/bin/bash
+# installation script for ecpp, including prettyprinter and uncommenter
+
+echo Cleaning/creating output executable directory...
+ if [ -x out ]; then rm -r out; fi
+ mkdir out
+echo "Done"
+
+echo Building...
+ make clean
+ make all
+ make uncomment
+ make pretty
+ make clean
+echo Done
+
+echo Creating installation directory...
+ if [ -x $1 ]; then echo Installation directory exists; else mkdir $1; fi
+echo Done
+
+echo -n Moving executables to installation directory...
+cp out/* $1
+echo " done"
+
+echo -n Adding installation directory to path...
+export PATH=$PATH:$1
+
+# add installation directory to bash startup file, making changes permanent
+if [ -x ~/.bashrc ]; then
+    echo -n "export PATH=\$PATH:$1" >>~/.bashrc;
+elif [ -x ~/.bash_profile ]; then
+    echo -n "export PATH=\$PATH:$1" >>~/.bash_profile;
+fi
+
+echo " done"

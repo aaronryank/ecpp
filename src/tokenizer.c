@@ -53,6 +53,7 @@ token_t *tokenize(FILE *in)
         }
     }
 
+    rewind_token(&tokens);
     rewind(in);
     return tokens;
 }
