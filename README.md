@@ -2,6 +2,10 @@
 
 The Extended C Preprocessor is a preprocessor for C/C++ that is capable of adding operators, directly replacing text, and modifying syntax. It has a built-in uncommenter and C prettyprinter.
 
+# Docs
+
+To read the "docs", head over to the [wiki](//github.com/aaronryank/ecpp/wiki).
+
 # Requirements
 
 ECPP requires:
