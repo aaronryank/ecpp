@@ -48,9 +48,6 @@ int main(int argc, char **argv)
         }
         else if (s[0] == '%' && !(strstr(s,"rule") == s+1)) {    // prevent duplication of rules
             preprocess(s);
-        }
-        else if (str_only_contains(s," \t\r\n")) {
-            putchar('\n');
         } else {
             tokens = preprocess_line(line,tokens);               // performs define's and replace's on the current line
             prettyprint_line(line++,tokens,&ps);
@@ -59,6 +56,7 @@ int main(int argc, char **argv)
         IF_DEBUG(printf("check %d\n",line-1));
         IF_DEBUG(print_list(tokens));
     }
+    putchar('\n'); // :P
     free(s);
 
     IF_DEBUG(puts("--- done preprocessing ---"));

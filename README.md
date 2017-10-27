@@ -12,7 +12,7 @@ ECPP requires:
 
 # Building
 
-To build, run `make`, then `make uncomment`. If you also want to individually use the prettyprinter, run `make pretty`.
+To build, run `make`, To build the uncommenter alone, run `make uncomment`. If you also want to individually use the prettyprinter, run `make pretty`.
 
 # Running
 
