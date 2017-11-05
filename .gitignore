@@ -1,6 +1,6 @@
 # ECPP
-out\*
-src\*.o
+out/*
+src/*.o
 
 # Prerequisites
 *.d
