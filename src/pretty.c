@@ -7,7 +7,8 @@
 
 int opening_brace(const token_t *src, struct prettyprint **ps)
 {
-    if (src->prev && !strcmp(src->prev->val,"=")) {    // e.g. char x[10] = {0};
+    if (src->prev && !strcmp(src->prev->val,"=")) {    /* e.g. char x[10] = {0}; */
+
         putchar('{');
         return 0;
     }
@@ -31,7 +32,8 @@ int opening_brace(const token_t *src, struct prettyprint **ps)
 
 int closing_brace(const token_t *src, struct prettyprint **ps)
 {
-    if (src->prev->type == TYPE_SEMICOLON) {    // basically, anything outside of e.g. char x[10] = {0};
+    if (src->prev->type == TYPE_SEMICOLON) {    /* basically, anything outside of e.g. char x[10] = {0}; */
+
         (*ps)->spaces = (*ps)->spaces - 1;
 
         int i = 0;
@@ -52,8 +54,10 @@ int closing_brace(const token_t *src, struct prettyprint **ps)
 
 int semicolon(token_t *_src, struct prettyprint **ps)
 {
-    token_t *src = _src;   // prevent pointer advancement
-    short int in_for = 0;  // bool: in-for-loop
+    token_t *src = _src;   /* prevent pointer advancement */
+
+    short int in_for = 0;  /* bool: in-for-loop */
+
 
     int line = src->line;
     while (src && line == src->line && !in_for) {
@@ -132,13 +136,17 @@ void prettyprint_line(int line, token_t *_src, struct prettyprint *ps)
 {
     token_t *src = _src;
 
-    while (src && src->line != line)   // advance pointer location to the line to be printed
+    while (src && src->line != line)   /* advance pointer location to the line to be printed */
+
         src = src->next;
 
-    if (src == NULL)                   // if the source doesn't have the line specified
-        return;                        // then there's nothing to print
+    if (src == NULL)                   /* if the source doesn't have the line specified */
 
-    while (src && src->line == line)   // for each specified line in the source
+        return;                        /* then there's nothing to print */
+
+
+    while (src && src->line == line)   /* for each specified line in the source */
+
     {
         int printed_newline = 0;
 
@@ -174,7 +182,8 @@ void prettyprint_line(int line, token_t *_src, struct prettyprint *ps)
             printed_newline = control_flow(src,&ps);
 
         if (printed_newline)
-            printed_newline = 0;  // avoid a -Wall warning since this variable is useless for now
+            printed_newline = 0;  /* avoid a -Wall warning since this variable is useless for now */
+
 
         src = src->next;
     }
@@ -182,7 +191,8 @@ void prettyprint_line(int line, token_t *_src, struct prettyprint *ps)
 
 #ifdef PRETTY_EXEC
 
-int flags[127];   // avoid linking errors
+int flags[127];   /* avoid linking errors */
+
 
 int main(int argc, char **argv)
 {

@@ -22,7 +22,7 @@ token_t *tokenize(FILE *in)
         {
             int c = getc(in);
 
-            // cpp or ecpp lines are ignored
+            /* cpp or ecpp lines are ignored */
             if ((c == '#' || c == '%') && (prev == '\n' || prev == 0)) {
                 while ((c = getc(in)) != '\n')
                     continue;
@@ -36,8 +36,8 @@ token_t *tokenize(FILE *in)
                     push(&tokens,str,gettype(str),line);
             }
             else {
-                if (compatibletypes(str,c)) {   // if adding c to str creates a valid token...
-                    str[i++] = c;               // add it
+                if (compatibletypes(str,c)) {   /* if adding c to str creates a valid token... */
+                    str[i++] = c;               /* add it                                      */
                 }
                 else {
                     in_token = 0;
@@ -106,8 +106,8 @@ short int compatibletypes(const char *s, int c)
 {
     int type = gettype(s);
 
-    if (!strlen(s)) {    // if token is empty,
-        return 1;        // of course adding c to it creates a valid token
+    if (!strlen(s)) {    /* if token is empty,                              */
+        return 1;        /* of course adding c to it creates a valid token  */
     }
     else if (type == TYPE_OPAREN ||    \
              type == TYPE_CPAREN ||    \
@@ -116,28 +116,46 @@ short int compatibletypes(const char *s, int c)
              type == TYPE_OBRACE ||    \
              type == TYPE_CBRACE ||    \
              type == TYPE_COMMA ||     \
-             type == TYPE_SEMICOLON) {     // single-character types
+             type == TYPE_SEMICOLON) {     /* single-character types */
+
         return 0;
     }
-    else if (str_contains(s,"\'\"")) {  // if token is a string or character
-        if (type == TYPE_LITERAL)       // if string/character is already finished
-            return 0;                   // then additional characters will not be part of the same token
-        return 1;                       // otherwise, they will
+    else if (str_contains(s,"\'\"")) {  /* if token is a string or character */
+
+        if (type == TYPE_LITERAL)       /* if string/character is already finished */
+
+            return 0;                   /* then additional characters will not be part of the same token */
+
+        return 1;                       /* otherwise, they will */
+
     }
-    else if (isnumliteral(s)) {        // if it's a number literal
-        if (strchr("0123456789.L",c))  // if the character is one of the characters making up a valid number literal
-            return 1;                  // then it can be added
-        return 0;                      // otherwise it will be part of the next token
+    else if (isnumliteral(s)) {        /* if it's a number literal */
+
+        if (strchr("0123456789.L",c))  /* if the character is one of the characters making up a valid number literal */
+
+            return 1;                  /* then it can be added */
+
+        return 0;                      /* otherwise it will be part of the next token */
+
     }
-    else if (type == TYPE_RESERVED || type == TYPE_CONTROL_FLOW || type == TYPE_KEYWORD) {  // if token is a valid keyword
-        if (strchr(LOWERCASE_ALPHA UPPERCASE_ALPHA "0123456789_",c))                        // if character is alphanumerical or an underscore
-            return 1;                                                                       // it can be appended
-        return 0;                                                                           // can't otherwise
+    else if (type == TYPE_RESERVED || type == TYPE_CONTROL_FLOW || type == TYPE_KEYWORD) {  /* if token is a valid keyword */
+
+        if (strchr(LOWERCASE_ALPHA UPPERCASE_ALPHA "0123456789_",c))                        /* if character is alphanumerical or an underscore */
+
+            return 1;                                                                       /* it can be appended */
+
+        return 0;                                                                           /* can't otherwise */
+
     }
-    else if (type == TYPE_OPERATOR) {          // if token is a valid operator
-        if (strchr("`~!@#$%^&*-+=|<>/?:.",c))  // and the character is too
-            return 1;                          // then together they are also valid operators
-        return 0;                              // otherwise not
+    else if (type == TYPE_OPERATOR) {          /* if token is a valid operator */
+
+        if (strchr("`~!@#$%^&*-+=|<>/?:.",c))  /* and the character is too */
+
+            return 1;                          /* then together they are also valid operators */
+
+        return 0;                              /* otherwise not */
+
     }
-    return 0;    // if something is messed up then it's assumed to be invalid
+    return 0;    /* if something is messed up then it's assumed to be invalid */
+
 }

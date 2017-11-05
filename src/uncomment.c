@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 
 #endif
 
-// crappy, yet working perfectly, and rather efficient
+/* crappy, yet working perfectly, and rather efficient */
 
 void uncomment__file_based(const char *infile, const char *outfile)
 {
@@ -47,7 +47,7 @@ void uncomment__file_based(const char *infile, const char *outfile)
             string = !string;
         }
         else if (string) {
-            // dummy to make sure that a comment in a string is not ignored
+            /* dummy to make sure that a comment in a string is not ignored */
         }
         else if (c == '/' && prev == '/') {
             line_comment = 1;

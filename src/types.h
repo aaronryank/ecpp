@@ -5,20 +5,20 @@
 #include <ctype.h>
 
 enum {
-  TYPE_UNDEF,       // undefined
-  TYPE_KEYWORD,     // any run of a-Z, A-Z, 0-9, and _
-  TYPE_LITERAL,     // any string, character, or integer literal
-  TYPE_OPAREN,      // (
-  TYPE_CPAREN,      // )
-  TYPE_OBRACKET,    // [
-  TYPE_CBRACKET,    // ]
-  TYPE_OBRACE,      // {
-  TYPE_CBRACE,      // }
-  TYPE_COMMA,       // ,
-  TYPE_SEMICOLON,   // ;
-  TYPE_OPERATOR,    // anything containing any of `~!@$%^&*()_-+=|:<>?
-  TYPE_RESERVED,    // anything in RESERVED_KEYWORDS
-  TYPE_CONTROL_FLOW // anything in CONTROL_FLOW_KEYWORDS
+  TYPE_UNDEF,       /* undefined                                           */
+  TYPE_KEYWORD,     /* any run of a-Z, A-Z, 0-9, and _                     */
+  TYPE_LITERAL,     /* any string, character, or integer literal           */
+  TYPE_OPAREN,      /* (                                                   */
+  TYPE_CPAREN,      /* )                                                   */
+  TYPE_OBRACKET,    /* [                                                   */
+  TYPE_CBRACKET,    /* ]                                                   */
+  TYPE_OBRACE,      /* {                                                   */
+  TYPE_CBRACE,      /* }                                                   */
+  TYPE_COMMA,       /* ,                                                   */
+  TYPE_SEMICOLON,   /* ;                                                   */
+  TYPE_OPERATOR,    /* anything containing any of `~!@$%^&*()_-+=|:<>?     */
+  TYPE_RESERVED,    /* anything in RESERVED_KEYWORDS                       */
+  TYPE_CONTROL_FLOW /* anything in CONTROL_FLOW_KEYWORDS                   */
 } token_types;
 
 extern const char *typenames[];
@@ -35,8 +35,8 @@ extern int control_flow_keyword_count;
 
 #define isliteral(s)  (isnumliteral(s) || ischrliteral(s) || isstrliteral(s))
 #define isoperator(s) (str_only_contains(s,"`~!@#$%^&*-+=|<>/?:."))
-#define iskeyword(s)  (str_only_contains(token,LOWERCASE_ALPHA UPPERCASE_ALPHA "0123456789_"))   // automatic concatenation
+#define iskeyword(s)  (str_only_contains(token,LOWERCASE_ALPHA UPPERCASE_ALPHA "0123456789_"))   /* automatic concatenation is cool */
 
 extern int gettype(const char *);
 
-#endif // ecpp's types.h
+#endif /* ecpp's types.h */

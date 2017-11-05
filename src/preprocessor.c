@@ -14,7 +14,8 @@ token_t *preprocess_line(int line, token_t *tokens)
     while (tokens->next && tokens->line < line)
         tokens = tokens->next;
 
-    // tokens->next so the last line of this loop doesn't irreversably set tokens to NULL
+    /* tokens->next so the last line of this loop doesn't irreversably set tokens to NULL */
+
     while (tokens->next && tokens->line == line)
     {
         int result, count = 0;
@@ -114,7 +115,8 @@ struct _varnames *get_variable_names(token_t *_src, token_t *_rule, int size)
 
 char *getvarname(const char *rule, struct _varnames *varnames_1, int count)
 {
-    struct _varnames *varnames = varnames_1;   // prevent original pointer advancement
+    struct _varnames *varnames = varnames_1;   /* prevent original pointer advancement */
+
 
     int i;
     for (i = 0; i < count; i++)
@@ -124,9 +126,12 @@ char *getvarname(const char *rule, struct _varnames *varnames_1, int count)
     return NULL;
 }
 
-// src: foo := 3
-// rule(search): x := 3
-// rule(replace): x = 3
+/* src: foo := 3 */
+
+/* rule(search): x := 3 */
+
+/* rule(replace): x = 3 */
+
 
 void do_replace_def(token_t **t, int idx, int count_src, int line)
 {
@@ -144,12 +149,16 @@ void do_replace_def(token_t **t, int idx, int count_src, int line)
 
     int l = (*t)->line;
 
-    if (count_src < count_rule) {                    // if the rule has less tokens than the search-matching source
-        for (i = 0; i < count_src; i++)              // get past the source tokens
+    if (count_src < count_rule) {                    /* if the rule has less tokens than the search-matching source */
+
+        for (i = 0; i < count_src; i++)              /* get past the source tokens */
+
             (*t) = (*t)->next;
 
-        for (i = 0; i < absolute(count_rule - count_src); i++)     // foreach i in distance(count_rule,count_src)
-            add_at_current(t," ",0,l);                             // add an empty token for later filling
+        for (i = 0; i < absolute(count_rule - count_src); i++)     /* foreach i in distance(count_rule,count_src) */
+
+            add_at_current(t," ",0,l);                             /* add an empty token for later filling */
+
 
         for (i = 0; i < count_rule; i++)
             (*t) = (*t)->prev;

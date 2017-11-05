@@ -11,7 +11,7 @@ To read the "docs", head over to the [wiki](//github.com/aaronryank/ecpp/wiki).
 ECPP requires:
 
  - GNU Make
- - GCC (4.9 or higher)
+ - GCC
  - A shell
 
 # Building

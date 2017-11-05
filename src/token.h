@@ -23,4 +23,4 @@ extern token_struct *pop(token_t **);
 extern token_struct *remove_last(token_t *);
 extern token_struct *remove_by_index(token_t **, int);
 
-#endif // ecpp's token.h
+#endif /* ecpp's token.h */

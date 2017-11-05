@@ -11,7 +11,8 @@ int flags[127];
 
 int main(int argc, char **argv)
 {
-    char *fname = parse_args(argc,argv);   // get filename and flags
+    char *fname = parse_args(argc,argv);   /* get filename and flags */
+
 
     FILE *in = fname ? fopen(fname,"r") : stdin;
 
@@ -20,9 +21,11 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    setup_rules();   // set up reserved keywords and control flow keywords 
+    setup_rules();   /* set up reserved keywords and control flow keywords  */
 
-    read_rules(in);  // I'm sorry, world
+
+    read_rules(in);  /* I'm sorry, world */
+
 
     IF_DEBUG(puts("--- begin tokenizing ---"));
 
@@ -46,17 +49,20 @@ int main(int argc, char **argv)
         if (s[0] == '#') {
             printf("%s",s);
         }
-        else if (s[0] == '%' && !(strstr(s,"rule") == s+1)) {    // prevent duplication of rules
+        else if (s[0] == '%' && !(strstr(s,"rule") == s+1)) {    /* prevent duplication of rules */
+
             preprocess(s);
         } else {
-            tokens = preprocess_line(line,tokens);               // performs define's and replace's on the current line
+            tokens = preprocess_line(line,tokens);               /* performs define's and replace's on the current line */
+
             prettyprint_line(line++,tokens,&ps);
         }
 
         IF_DEBUG(printf("check %d\n",line-1));
         IF_DEBUG(print_list(tokens));
     }
-    putchar('\n'); // :P
+    putchar('\n'); /* :P */
+
     free(s);
 
     IF_DEBUG(puts("--- done preprocessing ---"));
@@ -64,6 +70,8 @@ int main(int argc, char **argv)
 
     free(tokens);
     fclose(in);
+
+    return 0;
 }
 
 char *parse_args(int argc, char **argv)
@@ -89,7 +97,8 @@ void read_rules(FILE *in)
     memset(s,0,1024);
 
     while (fgets(s,1023,in))
-        if (*s == '%' && strstr(s,"rule") == s+1)    // hardcode for rules, they need to be set up before tokenization
+        if (*s == '%' && strstr(s,"rule") == s+1)    /* hardcode for rules, they need to be set up before tokenization */
+
             preprocess(s);
 
     rewind(in);

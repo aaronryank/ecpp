@@ -20,8 +20,8 @@ struct define_rule {
 };
 
 struct _varnames {
-  char *rule;  // rule's variable name
-  char *src;   // actual variable in src
+  char *rule;  /* rule's variable name   */
+  char *src;   /* actual variable in src */
 };
 
-#endif // ecpp's preprocessor.h
+#endif /* ecpp's preprocessor.h */

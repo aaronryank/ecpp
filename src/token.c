@@ -47,8 +47,6 @@ void rewind_token(token_t **current)
 
 void push(token_t **current, char *val, int type, int line)
 {
-    //printf("%10s: %s\n",_typenames[type],val);
-
     if (!(*current)) {
         (*current) = malloc(sizeof(token_t));
         (*current)->val = strdup(val);

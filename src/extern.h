@@ -69,4 +69,4 @@ extern void prettyprint_line(int, token_t *, struct prettyprint *);
 
 extern void uncomment(const char *, const char *, token_t **);
 
-#endif // ecpp's extern.h
+#endif /* ecpp's extern.h */

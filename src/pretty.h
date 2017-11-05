@@ -5,4 +5,4 @@ struct prettyprint {
   int spaces;
 };
 
-#endif // ecpp's pretty.h
+#endif /* ecpp's pretty.h */

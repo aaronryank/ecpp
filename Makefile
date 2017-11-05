@@ -1,7 +1,7 @@
 OBJ := src/token.o src/tokenizer.o src/string.o src/main.o src/pp-parse.o src/preprocessor.o src/rules.o src/pretty.o src/uncomment.o
 OBJ_ := src/token.o src/tokenizer.o src/string.o src/pp-parse.o src/preprocessor.o src/rules.o src/uncomment.o
 CC := gcc
-CFLAGS := -g -Wall -O3
+CFLAGS := -g -Wall -O3 -ansi
 
 ECPP := out/ecpp
 UNCOMMENT := out/uncomment
