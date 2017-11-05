@@ -1,4 +1,4 @@
-# Extended C Preprocessor
+# Extended C Preprocessor [![Build Status](https://travis-ci.org/aaronryank/ecpp.svg?branch=master)](https://travis-ci.org/aaronryank/ecpp)
 
 The Extended C Preprocessor is a preprocessor for C/C++ that is capable of adding operators, directly replacing text, and modifying syntax. It has a built-in uncommenter and C prettyprinter.
 
