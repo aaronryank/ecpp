@@ -58,3 +58,7 @@ dkms.conf
 # Tests
 test.bash
 test.sh
+
+# gcov files
+*.gcov
+*.gcda

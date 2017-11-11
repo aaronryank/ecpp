@@ -9,25 +9,20 @@ struct define_rule  *define_rules;
 
 int count_rr, count_dr;   /* replace-rule count, define-rule count */
 
-
 void preprocess(char *line)
 {
     char *dupline, *init;
 
     dupline = strdup(line);                   /* duplicate line so strtok doesn't mess with main's variable */
 
-    memcpy(dupline,&line[1],strlen(line)-1);  /* advance past the % */
+    memcpy(dupline,&line[1],strlen(line)-1);  /* advance past the # */
 
     init = strtok(dupline," ");               /* get the preprocessor directive (e.g. define, replace, etc) */
 
-
     if (!strlen(init))                        /* if there were spaces between the % and the directive */
-
         init = strtok(NULL," ");              /* remove them */
 
-
     int directive = directivenum(init);       /* get integer value of directive (see preprocessor.h) */
-
 
     if (directive == D_UNDEF) {
         fprintf(stderr,"Warning: unrecognized preprocessor directive %s\n",init);
@@ -37,9 +32,7 @@ void preprocess(char *line)
 
     char *arg1 = strtok(NULL," ");            /* get first directive string (e.g. %define RULE modification, %replace SEARCH replace, etc) */
 
-
     if (arg1[0] == '`') {                     /* defines/searches that need spaces should use `backticks like this` */
-
         arg1[0] = ' ';
         char *tmp = strtok(NULL,"`");
         strcat(arg1," ");
@@ -48,9 +41,7 @@ void preprocess(char *line)
 
     char *arg2 = strtok(NULL,"\n");           /* get second directive string (e.g. %define rule MODIFICATION, %replace search REPLACE, etc) */
 
-
     handle_directive(directive, arg1, arg2);  /* call functions based on directive */
-
 
     free(dupline);
 }
@@ -59,7 +50,7 @@ int directivenum(const char *s)
 {
     if (!strcmp(s,"replace"))
         return D_REPLACE;
-    else if (!strcmp(s,"define"))
+    else if (!strcmp(s,"defop") || !strcmp(s,"defsyn"))
         return D_DEFINE;
     else if (!strcmp(s,"rule"))
         return D_RULE;
@@ -94,7 +85,6 @@ void add_replace_rule(const char *arg1, const char *arg2)
 void add_define_rule(const char *arg1, const char *arg2)
 {
     define_rules = realloc(define_rules,(count_dr + 1) * sizeof(struct replace_rule));    /* make space for the new rule */
-
 
     FILE *search = fopen(".ecpp.tmp1","w+");    /* if fmemopen were standard this would be much easier ._. */
 

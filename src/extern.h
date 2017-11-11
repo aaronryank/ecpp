@@ -9,8 +9,9 @@
 
 extern int flags[127];
 
-extern char *parse_args(int, char **);
-extern void  read_rules(FILE *);
+extern char     *parse_args(int, char **);
+extern void      read_rules(FILE *);
+extern short int is_ecpp_directive(const char *);
 
 #define IF_DEBUG(x) flags['d'] ? x : 0;
 

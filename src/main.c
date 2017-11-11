@@ -13,7 +13,6 @@ int main(int argc, char **argv)
 {
     char *fname = parse_args(argc,argv);   /* get filename and flags */
 
-
     FILE *in = fname ? fopen(fname,"r") : stdin;
 
     if (!in) {
@@ -23,9 +22,7 @@ int main(int argc, char **argv)
 
     setup_rules();   /* set up reserved keywords and control flow keywords  */
 
-
     read_rules(in);  /* I'm sorry, world */
-
 
     IF_DEBUG(puts("--- begin tokenizing ---"));
 
@@ -42,26 +39,25 @@ int main(int argc, char **argv)
     struct prettyprint ps = {0};
     char *s = malloc(1024 * sizeof(char));
     memset(s,0,1024);
+
     while (fgets(s,1023,in))
     {
         IF_DEBUG(printf("read loop %d debug: %p %s",line,s,s));
 
         if (s[0] == '#') {
-            printf("%s",s);
-        }
-        else if (s[0] == '%' && !(strstr(s,"rule") == s+1)) {    /* prevent duplication of rules */
-
-            preprocess(s);
+            if (is_ecpp_directive(s) && !(strstr(s,"rule") == s+1))
+                preprocess(s);
+            else
+                printf("%s",s);
         } else {
             tokens = preprocess_line(line,tokens);               /* performs define's and replace's on the current line */
-
             prettyprint_line(line++,tokens,&ps);
         }
 
         IF_DEBUG(printf("check %d\n",line-1));
         IF_DEBUG(print_list(tokens));
     }
-    putchar('\n'); /* :P */
+    putchar('\n');    /* :P */
 
     free(s);
 
@@ -91,16 +87,34 @@ char *parse_args(int argc, char **argv)
     return fname;
 }
 
+/* hardcode for rules, they need to be set up before tokenization */
 void read_rules(FILE *in)
 {
     char *s = malloc(1024 * sizeof(char));
     memset(s,0,1024);
 
     while (fgets(s,1023,in))
-        if (*s == '%' && strstr(s,"rule") == s+1)    /* hardcode for rules, they need to be set up before tokenization */
-
+        if (*s == '#' && strstr(s,"rule") == s+1)
             preprocess(s);
 
     rewind(in);
     free(s);
+}
+
+short int is_ecpp_directive(const char *s)
+{
+    char *line;
+    char *init;
+
+    line = strdup(s);
+    memcpy(line,&s[1],strlen(s)-1);
+
+    init = strtok(line," ");
+    if (!strlen(init))
+        init = strtok(line," ");
+
+    if (!strcmp(init,"replace") || !strcmp(init,"defop") || !strcmp(init,"defsyn"))
+        return 1;
+
+    return 0;
 }
