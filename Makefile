@@ -1,7 +1,7 @@
 OBJ    := src/token.o src/tokenizer.o src/string.o src/main.o src/pp-parse.o src/preprocessor.o src/rules.o src/pretty.o src/uncomment.o
 OBJ_   := src/token.o src/tokenizer.o src/string.o src/pp-parse.o src/preprocessor.o src/rules.o src/uncomment.o
 CC     := gcc
-CFLAGS := -coverage -g -Wall -O3 -ansi
+CFLAGS := -coverage -g -Wall -O3 -ansi -DMINIMAL_TOKEN_C
 
 .PHONY: all uncomment clean pretty outdir
 

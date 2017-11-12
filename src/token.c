@@ -19,27 +19,6 @@ void print_list(token_t *head)
     }
 }
 
-void printline(int line, token_t *head)
-{
-    token_t *current = head;
-    int count = 0;
-
-    while (current) {
-        if (line == current->line) {
-            printf("%s ",current->val);
-            count++;
-        }
-        else if (line < current->line) {
-            break;
-        }
-
-        current = current->next;
-    }
-
-    if (count)
-        putchar('\n');
-}
-
 void rewind_token(token_t **current)
 {
     if (!(*current))
@@ -123,6 +102,10 @@ token_struct *pop(token_t **head)
     return retval;
 }
 
+/* nothing past here is ever used, define MINIMAL_TOKEN_C to keep them out of the binaries */
+
+#ifndef MINIMAL_TOKEN_C
+
 token_struct *remove_last(token_t *head)
 {
     token_struct *retval = malloc(sizeof(token_struct));
@@ -203,3 +186,5 @@ token_struct *return_index(token_t *head, int n)
     retval->line = current->line;
     return retval;
 }
+
+#endif

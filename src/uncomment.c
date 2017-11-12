@@ -13,8 +13,6 @@ int main(int argc, char **argv)
     uncomment(argv[1] ? argv[1] : "stdin","stdout",NULL);
 }
 
-#endif
-
 /* crappy, yet working perfectly, and rather efficient */
 
 void uncomment__file_based(const char *infile, const char *outfile)
@@ -88,6 +86,13 @@ void uncomment__file_based(const char *infile, const char *outfile)
     fclose(out);
     fclose(in);
 }
+
+#else
+
+/* smaller binary */
+void uncomment__file_based(const char *in, const char *out){free(strdup(in));free(strdup(out));}
+
+#endif
 
 void uncomment__token_based(token_t **tokens)
 {
