@@ -1,4 +1,17 @@
-# Extended C Preprocessor [![Build Status](https://travis-ci.org/aaronryank/ecpp.svg?branch=master)](https://travis-ci.org/aaronryank/ecpp) [![BSD License](https://camo.githubusercontent.com/6def34e1aa4e2e9e81448c8a57cf3e09d8af28cf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4253442d626c75652e737667)](LICENSE) [![Coverage](https://codecov.io/github/aaronryank/ecpp/coverage.svg?branch=master)](https://codecov.io/github/aaronryank/ecpp?branch=master)
+<h1 align="center">Extended C Preprocessor</h1>
+
+<h1 align="center">
+ <a href="https://travis-ci.org/aaronryank/ecpp">
+   <img src="https://travis-ci.org/aaronryank/ecpp.svg?branch=master" />
+ </a>
+ <a href="LICENSE">
+   <img src="https://camo.githubusercontent.com/6def34e1aa4e2e9e81448c8a57cf3e09d8af28cf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4253442d626c75652e737667" />
+ </a>
+ <a href="https://codecov.io/github/aaronryank/ecpp?branch=master">
+   <img src="https://codecov.io/github/aaronryank/ecpp/coverage.svg?branch=master" />
+ </a>
+ 
+</h1>
 
 The Extended C Preprocessor is a preprocessor for C/C++ that is capable of adding operators, directly replacing text, and modifying syntax. It has a built-in uncommenter and C prettyprinter.
 
