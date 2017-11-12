@@ -1,6 +1,6 @@
-<h1 align="center">Extended C Preprocessor</h1>
+<h3 align="center">Extended C Preprocessor</h1>
 
-<h1 align="center">
+<h3 align="center">
  <a href="https://travis-ci.org/aaronryank/ecpp">
    <img src="https://travis-ci.org/aaronryank/ecpp.svg?branch=master" />
  </a>
