@@ -60,5 +60,4 @@ test.bash
 test.sh
 
 # gcov files
-*.gcov
-*.gcda
+*.gc*
