@@ -1,6 +1,10 @@
 #ifndef _ECPP_EXTERN_H
 #define _ECPP_EXTERN_H
 
+#ifndef _WIN32
+extern char *strdup(const char *);
+#endif
+
 #include <stdio.h>
 #include "token.h"
 #include "pretty.h"

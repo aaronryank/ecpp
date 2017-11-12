@@ -50,7 +50,7 @@ int directivenum(const char *s)
 {
     if (!strcmp(s,"replace"))
         return D_REPLACE;
-    else if (!strcmp(s,"defop") || !strcmp(s,"defsyn"))
+    else if (!strcmp(s,"defop") || !strcmp(s,"defsyn") || !strcmp(s,"def"))
         return D_DEFINE;
     else if (!strcmp(s,"rule"))
         return D_RULE;

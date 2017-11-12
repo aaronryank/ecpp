@@ -3,6 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifndef _WIN32
+extern char *strdup(const char *);
+#endif
+
 const char *_typenames[] = {"undefined","keyword","literal","oparen","cparen","obracket","cbracket","obrace","cbrace","comma","semicolon","operator","reserved","control"};
 
 void print_list(token_t *head)

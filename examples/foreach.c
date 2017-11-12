@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-%rule control_flow foreach
-%rule control_flow in
-%define `foreach(x in y..z)` int x; for (x = y; x <= z; x++)
+#rule control_flow foreach
+#rule control_flow in
+#def `foreach(x in y..z)` int x; for (x = y; x <= z; x++)
 
 int main(int argc, char **argv)
 {

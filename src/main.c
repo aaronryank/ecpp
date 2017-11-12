@@ -113,7 +113,7 @@ short int is_ecpp_directive(const char *s)
     if (!strlen(init))
         init = strtok(line," ");
 
-    if (!strcmp(init,"replace") || !strcmp(init,"defop") || !strcmp(init,"defsyn"))
+    if (!strcmp(init,"replace") || !strcmp(init,"defop") || !strcmp(init,"defsyn") || !strcmp(init,"def"))
         return 1;
 
     return 0;

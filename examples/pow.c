@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 
-%define x**y pow(x,y)
+#def x**y pow(x,y)
 
 int main(int argc, char **argv)
 {

@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-%define int&y int*y
+#def int&y int*y
 
 void pass(int& x)
 {
