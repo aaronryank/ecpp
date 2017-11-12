@@ -15,11 +15,11 @@
 
 The Extended C Preprocessor is a preprocessor for C/C++ that is capable of adding operators, directly replacing text, and modifying syntax. It has a built-in uncommenter and C prettyprinter.
 
-# Docs
+## Docs
 
 To read the "docs", head over to the [wiki](//github.com/aaronryank/ecpp/wiki).
 
-# Requirements
+## Requirements
 
 ECPP requires:
 
@@ -27,11 +27,11 @@ ECPP requires:
  - GCC
  - A shell
 
-# Building
+## Building
 
 To build, run `make`, To build the uncommenter alone, run `make uncomment`. If you also want to individually use the prettyprinter, run `make pretty`.
 
-# Running
+## Running
 
 To run ecpp with the uncommenter and prettyprinter, run `out/ecpp sourcefile`.
 
@@ -39,7 +39,7 @@ To run the uncommenter only, run `out/uncomment sourcefile`.
 
 To run the prettyprinter only, run `out/pretty < sourcefile`.
 
-# Installing
+## Installing
 
 To install on your system, run `./install /path/to/installation/directory`. It will:
 
