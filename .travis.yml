@@ -4,6 +4,11 @@ compiler: gcc
 script:
  - make
  - out/ecpp examples/foreach.c
+ - out/ecpp examples/pow.c
+ - out/ecpp examples/prettyprinter.c
+ - out/ecpp examples/print.c
+ - out/ecpp examples/ptr.c
+ - out/ecpp examples/return.c
  - gcov src/*.c
 
 after_success: 
