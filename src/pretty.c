@@ -213,6 +213,8 @@ int main(int argc, char **argv)
 
     for (line = 1; line <= maxline; line++)
         prettyprint_line(line,tokens,&ps);
+
+    return 0;
 }
 
 #endif

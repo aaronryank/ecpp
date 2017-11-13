@@ -11,6 +11,8 @@ int flags[127];
 int main(int argc, char **argv)
 {
     uncomment(argv[1] ? argv[1] : "stdin","stdout",NULL);
+
+    return 0;
 }
 
 /* crappy, yet working perfectly, and rather efficient */
