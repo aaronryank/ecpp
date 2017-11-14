@@ -28,6 +28,9 @@ void preprocess(char *line)
         fprintf(stderr,"Warning: unrecognized preprocessor directive %s\n",init);
         free(dupline);
         return;
+    } else if (directive == D_RULE) {
+        free(dupline);
+        return;
     }
 
     char *arg1 = strtok(NULL," ");            /* get first directive string (e.g. %define RULE modification, %replace SEARCH replace, etc) */

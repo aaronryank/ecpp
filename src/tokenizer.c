@@ -23,7 +23,7 @@ token_t *tokenize(FILE *in)
             int c = getc(in);
 
             /* cpp or ecpp lines are ignored */
-            if ((c == '#' || c == '%') && (prev == '\n' || prev == 0)) {
+            if (c == '#' && (prev == '\n' || prev == 0)) {
                 while ((c = getc(in)) != '\n')
                     continue;
                 c = 0;

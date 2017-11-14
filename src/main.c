@@ -45,7 +45,7 @@ int main(int argc, char **argv)
         IF_DEBUG(printf("read loop %d debug: %p %s",line,s,s));
 
         if (s[0] == '#') {
-            if (is_ecpp_directive(s) && !(strstr(s,"rule") == s+1))
+            if (is_ecpp_directive(s))
                 preprocess(s);
             else
                 printf("%s",s);
@@ -113,7 +113,7 @@ short int is_ecpp_directive(const char *s)
     if (!strlen(init))
         init = strtok(line," ");
 
-    if (!strcmp(init,"replace") || !strcmp(init,"defop") || !strcmp(init,"defsyn") || !strcmp(init,"def"))
+    if (!strcmp(init,"replace") || !strcmp(init,"defop") || !strcmp(init,"defsyn") || !strcmp(init,"def") || !strcmp(init,"rule"))
         return 1;
 
     return 0;
