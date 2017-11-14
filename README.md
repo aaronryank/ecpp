@@ -25,7 +25,6 @@ ECPP requires:
 
  - GNU Make
  - GCC
- - A shell
 
 ## Building
 

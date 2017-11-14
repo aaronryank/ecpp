@@ -11,6 +11,8 @@ script:
  - out/ecpp examples/print.c
  - out/ecpp examples/ptr.c
  - out/ecpp examples/return.c
+ - out/ecpp -d examples/foreach.c
+ - out/ecpp -u examples/prettyprinter.c
  - out/pretty examples/prettyprinter.c
  - out/uncomment examples/comments.c
  - gcov src/*.c

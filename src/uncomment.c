@@ -92,7 +92,7 @@ void uncomment__file_based(const char *infile, const char *outfile)
 #else
 
 /* smaller binary */
-void uncomment__file_based(const char *in, const char *out){free(strdup(in));free(strdup(out));}
+#define uncomment__file_based(x,y) ;
 
 #endif
 

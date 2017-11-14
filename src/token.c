@@ -57,12 +57,7 @@ void push(token_t **current, char *val, int type, int line)
 void add_at_current(token_t **current, char *val, int type, int line)
 {
     if (!(*current)) {
-        (*current) = malloc(sizeof(token_t));
-        (*current)->val = strdup(val);
-        (*current)->type = type;
-        (*current)->line = line;
-        (*current)->next = NULL;
-        (*current)->prev = NULL;
+        push(current,val,type,line);
         return;
     }
 
