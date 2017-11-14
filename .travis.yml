@@ -11,6 +11,7 @@ script:
  - out/ecpp examples/print.c
  - out/ecpp examples/ptr.c
  - out/ecpp examples/return.c
+ - out/ecpp examples/int.c
  - out/ecpp -d examples/foreach.c
  - out/ecpp -u examples/prettyprinter.c
  - out/pretty examples/prettyprinter.c
