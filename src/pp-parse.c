@@ -9,7 +9,7 @@ struct define_rule  *define_rules;
 
 int count_rr, count_dr;   /* replace-rule count, define-rule count */
 
-void preprocess(char *line)
+void preprocess(char *line, int ignore_rules)
 {
     char *dupline, *init;
 
@@ -28,7 +28,7 @@ void preprocess(char *line)
         fprintf(stderr,"Warning: unrecognized preprocessor directive %s\n",init);
         free(dupline);
         return;
-    } else if (directive == D_RULE) {
+    } else if (directive == D_RULE && ignore_rules) {
         free(dupline);
         return;
     }

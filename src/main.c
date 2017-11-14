@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 
         if (s[0] == '#') {
             if (is_ecpp_directive(s))
-                preprocess(s);
+                preprocess(s,1);
             else
                 printf("%s",s);
         } else {
@@ -94,8 +94,8 @@ void read_rules(FILE *in)
     memset(s,0,1024);
 
     while (fgets(s,1023,in))
-        if (*s == '#' && strstr(s,"rule") == s+1)
-            preprocess(s);
+        if (*s == '#' && strstr(s,"rule"))
+            preprocess(s,0);
 
     rewind(in);
     free(s);

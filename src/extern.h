@@ -32,7 +32,7 @@ extern struct define_rule  *define_rules;
 extern int                  count_rr;
 extern int                  count_dr;
 
-extern void preprocess(char *);
+extern void preprocess(char *, int);
 extern int  directivenum(const char *);
 extern void handle_directive(int, const char *, const char *);
 extern void add_replace_rule(const char *, const char *);
