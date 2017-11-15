@@ -16,6 +16,9 @@ script:
  - out/ecpp -u examples/prettyprinter.c
  - out/pretty examples/prettyprinter.c
  - out/uncomment examples/comments.c
+ - out/uncomment examples/nonexistent.c || echo 'This failed, oops'
+ - out/uncomment examples/pow.c out || echo 'This failed, oops'
+ - out/ecpp examples/nonexistent.c || echo 'This failed, oops'
  - gcov src/*.c
 
 after_success: 

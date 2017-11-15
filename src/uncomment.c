@@ -10,7 +10,7 @@ int flags[127];
 
 int main(int argc, char **argv)
 {
-    uncomment(argv[1] ? argv[1] : "stdin","stdout",NULL);
+    uncomment(argv[1] ? argv[1] : "stdin",argv[2] ? argv[2] : "stdout",NULL);
 
     return 0;
 }
@@ -24,11 +24,11 @@ void uncomment__file_based(const char *infile, const char *outfile)
 
     if (!in) {
         fprintf(stderr,"Error opening input file %s: %s\n",infile,strerror(errno));
-        return;
+        exit(EXIT_FAILURE);
     }
     if (!out) {
         fprintf(stderr,"Error opening output file %s: %s\n",outfile,strerror(errno));
-        return;
+        exit(EXIT_FAILURE);
     }
 
     int i = 0;

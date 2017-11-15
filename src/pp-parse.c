@@ -24,11 +24,7 @@ void preprocess(char *line, int ignore_rules)
 
     int directive = directivenum(init);       /* get integer value of directive (see preprocessor.h) */
 
-    if (directive == D_UNDEF) {
-        fprintf(stderr,"Warning: unrecognized preprocessor directive %s\n",init);
-        free(dupline);
-        return;
-    } else if (directive == D_RULE && ignore_rules) {
+    if (directive == D_RULE && ignore_rules) {
         free(dupline);
         return;
     }
@@ -57,8 +53,7 @@ int directivenum(const char *s)
         return D_DEFINE;
     else if (!strcmp(s,"rule"))
         return D_RULE;
-    else
-        return D_UNDEF;
+    return -1;
 }
 
 void handle_directive(int directive, const char *arg1, const char *arg2)
