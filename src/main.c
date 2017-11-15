@@ -106,6 +106,9 @@ short int is_ecpp_directive(const char *s)
     char *line;
     char *init;
 
+    if (*s != '#')
+        return 0;
+
     line = strdup(s);
     memcpy(line,&s[1],strlen(s)-1);
 

@@ -73,12 +73,6 @@ int semicolon(token_t *_src, struct prettyprint **ps)
 
     putchar(';');
 
-    /* last token in file */
-    if (!_src || !_src->next || !_src->next->type) {
-        putchar('\n');
-        return 1;
-    }
-
     if (_src->next->type != TYPE_CBRACE) {
         putchar('\n');
 
