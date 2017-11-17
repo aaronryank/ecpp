@@ -40,6 +40,9 @@ int main(int argc, char **argv)
     char *s = malloc(1024 * sizeof(char));
     memset(s,0,1024);
 
+    if (!flags['C'])
+        puts("#define ECPP 1");
+
     while (fgets(s,1023,in))
     {
         IF_DEBUG(printf("read loop %d debug: %p %s",line,s,s));
