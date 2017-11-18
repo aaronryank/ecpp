@@ -2,9 +2,10 @@
 
 #include <stdio.h>
 
-#def int&y int*y
+#rule reserved type
+#def type&y type*y
 
-void pass(int& x)
+void pass(type& x)
 {
     *x = 8;
 }

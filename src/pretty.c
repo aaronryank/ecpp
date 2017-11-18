@@ -91,8 +91,8 @@ int operator(token_t *src, struct prettyprint **ps)
     if (!strcmp(src->val,".") || !strcmp(src->val,"->") || !strcmp(src->val,"++") || !strcmp(src->val,"--")) {
         printf("%s",src->val);
         return 0;
-    } else if (!strcmp(src->val,"*") && src->prev && src->prev->type == TYPE_RESERVED) {
-        printf(" %s",src->val);
+    } else if (src->prev->type == TYPE_OPERATOR || src->prev->type == TYPE_OPAREN || src->prev->type == TYPE_COMMA || src->prev->type == TYPE_RESERVED) {
+        printf("%s",src->val);
         return 0;
     }
 
