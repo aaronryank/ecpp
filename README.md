@@ -10,6 +10,9 @@
  <a href="https://codecov.io/github/aaronryank/ecpp?branch=master">
    <img src="https://codecov.io/github/aaronryank/ecpp/coverage.svg?branch=master" />
  </a>
+ <a href="https://github.com/aaronryank/ecpp/issues">
+   <img src="https://img.shields.io/github/issues/aaronryank/ecpp.svg" />
+ </a>
  
 </h1>
 
