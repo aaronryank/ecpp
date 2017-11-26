@@ -2,9 +2,9 @@ language: c
 sudo: false
 compiler: gcc
 script:
- - make
- - make uncomment
- - make pretty
+ - make CFLAGS=-coverage
+ - make uncomment CFLAGS=-coverage
+ - make pretty CFLAGS=-coverage
  - out/ecpp examples/foreach.c
  - out/ecpp examples/pow.c
  - out/ecpp examples/prettyprinter.c
